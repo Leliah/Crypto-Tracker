@@ -16,11 +16,18 @@ document.querySelector("form").addEventListener('submit', (event) => {
     .then((res) => res.json())
     .then((response) => {
         console.log('fetch successful')
+
+        //GRABBING SEARCH VALUE
         let search = document.getElementById('search').value
         console.log(search)
+        
+        //REMOVING DIV THAT HOLDS LIST ONCE FORM IS SUBMITTED
         div.remove()
 
+        //GRABBING COING DATA
         let coins = response.data
+
+        //ERROR HANDELING: IF COIN IS NOT ON THE LIST
         if(!coins){
             alert(`COIN IS NOT ON THE HOT 100 LIST.`)
             window.location.reload();
@@ -37,11 +44,10 @@ document.querySelector("form").addEventListener('submit', (event) => {
         section.setAttribute('class', 'search-container');
         main.append(section)
 
+        //CLEARING CONTAINER AFTER SEARCH
         let sContainer = document.querySelector('.search-container');
         sContainer.innerHTML = '';
         
-         
-        //function getCoin (){
         //RANK DATA
         let rank = response.data.rank;
         console.log(rank)
@@ -49,8 +55,6 @@ document.querySelector("form").addEventListener('submit', (event) => {
         //COIN NAME DATE
         let name = response.data.name;
         console.log(name)
-
-
         
         //SYMBOL DATA
         let symbol = response.data.symbol;
@@ -150,10 +154,6 @@ document.querySelector("form").addEventListener('submit', (event) => {
         } else{
             marketChange.style.color = "black";
         }
-    //}
-    
-
-    //getCoin()
 
         //clearing form after submit
         const form = document.querySelector('form')
@@ -164,8 +164,6 @@ document.querySelector("form").addEventListener('submit', (event) => {
         console.log(error)
     });
     
-
-
 })
 
 // /**
@@ -213,63 +211,106 @@ window.addEventListener('load', (event) => {
          */
         let coins = response.data
         for(let i = 0; i < coins.length; i++){
+
+            //FUNCTION TO CREATE THE FORMAT FOR THE LIST
             function getCoin(){
+            
+            //RANK INFO
             let rank = response.data[i].rank;
             console.log(rank)
     
+            //NAME INFO
             let name = response.data[i].name;
             console.log(name)
     
+            //SYMBOL INFO
             let symbol = response.data[i].symbol;
             console.log(symbol)
     
+            //PRICE INFO
             let price = parseFloat(response.data[i].priceUsd).toFixed(2);
             console.log(price)
     
+            //MARKETCAP INFO
             let marketCap = parseFloat(response.data[i].marketCapUsd).toFixed(2)
             console.log(marketCap)
     
+            //PERCENT CHANGE INFO
             let change = parseFloat(response.data[i].changePercent24Hr).toFixed(2)
             console.log(change)
             
-        
+            /**
+             * CREATING ARTICLE
+             * ADD CLASS NAME
+             */
             let article = document.createElement('article');
             article.className = 'card';
             console.log(article)
     
+            /**
+             * CREATING H2
+             * SETTING H2 TO RANK VALUE
+             */
             let heading = document.createElement('h2');
             heading.textContent = `#${rank}`
             article.append(heading);
-    
+
+            /**
+             * CREATING H3
+             * SETTING H3 TO SYMBOL VALUE
+             */
             let shortened = document.createElement('h3')
             shortened.textContent = symbol
             heading.after(shortened)
     
+            /**
+             * CREATING H4
+             * SETTING H4 TO NAME VALUE
+             */
             let fullname = document.createElement('h4');
             fullname.textContent = name
             shortened.after(fullname)
-    
+
+            /**
+             * CREATING P
+             * SETTING P TO PRICE VALUE
+             */
             let usd = document.createElement('p');
             usd.textContent = `$${price}`;
             fullname.after(usd)
     
-            console.log(`Marketcap: ${marketCap}`)
+            //console.log(`Marketcap: ${marketCap}`)
+
+            /**
+             * CREATING P
+             * CHECKING TO SEE IF GREATHER  THAN 10
+             * IF TRUE, SETTING P TO MARKETCAP VALUE + 'B' FOR BILLIONS
+             */
             let market = document.createElement('p');
             if(marketCap.length >= 10){
             market.textContent = `$${marketCap.slice(0,3)}B`;
             usd.after(market)
             }
-            
+
+            /**
+             * CREATING P
+             * CHECKING TO SEE IF BETWEEN 1MILLION & LESS THAN 1 BILLION
+             * IF TRUE, SETTING P TO MARKETCAP VALUE + 'M' FOR MILLIONS
+             */
             if(marketCap >= 1000000 && marketCap < 1000000000){
             market.textContent = `$${marketCap.slice(0,3)}M`;
             usd.after(market) 
             }
     
+            /**
+             * CREATING P
+             * SETTING MARKET CHANGE TO CHANGE VALUE %
+             */
             let marketChange = document.createElement('p');
             marketChange.textContent = `${change}%`;
             market.after(marketChange)
     
-            //if the market changes negatively or positively in 24hrs
+            //IF THE MARKET CHANGES POS OR NEG IN 24HRS
             if(change < 0){
                 marketChange.style.color = "red";
                 marketChange.innerHTML =  change + '%'
@@ -279,16 +320,16 @@ window.addEventListener('load', (event) => {
             } else{
                 marketChange.style.color = "black";
             }
-    
+            
+            //ADDING TO DOM
             main.appendChild(div)
             div.append(article)
             }
-    
+            
+            //CALLING FUNCTION
             getCoin()
 
         }//for loop closing tag
-
-
     })
     .catch((error) => {
         console.log(error)
