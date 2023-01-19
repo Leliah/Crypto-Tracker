@@ -12,7 +12,7 @@ const submit = document.querySelector('submit')
  */
 document.querySelector("form").addEventListener('submit', (event) => {
     event.preventDefault()
-    fetch (`https://api.coincap.io/v2/assets/${event.target.crypto.value}?amount=100`)
+    fetch (`https://api.coincap.io/v2/assets/${event.target.crypto.value}`)
     .then((res) => res.json())
     .then((response) => {
         console.log('fetch successful')
@@ -20,16 +20,27 @@ document.querySelector("form").addEventListener('submit', (event) => {
         console.log(search)
         div.remove()
 
+        let coins = response.data
+        if(!coins){
+            alert(`COIN IS NOT ON THE HOT 100 LIST.`)
+            window.location.reload();
+        }
+
+        
         /**
          * CREATE SECTION
          * ADD CLASS
          * ADD SECTION TO THE END OF MAIN
          */
+        
         let section = document.createElement('section');
         section.setAttribute('class', 'search-container');
-        //section.style.display = 'grid'
         main.append(section)
 
+        let sContainer = document.querySelector('.search-container');
+        sContainer.innerHTML = '';
+        
+         
         //function getCoin (){
         //RANK DATA
         let rank = response.data.rank;
@@ -38,6 +49,7 @@ document.querySelector("form").addEventListener('submit', (event) => {
         //COIN NAME DATE
         let name = response.data.name;
         console.log(name)
+
 
         
         //SYMBOL DATA
@@ -139,16 +151,21 @@ document.querySelector("form").addEventListener('submit', (event) => {
             marketChange.style.color = "black";
         }
     //}
+    
 
     //getCoin()
- 
-        
+
         //clearing form after submit
         const form = document.querySelector('form')
         form.reset();
-    });
+    })
 
+    .catch((error) => {
+        console.log(error)
+    });
     
+
+
 })
 
 // /**
@@ -160,32 +177,44 @@ window.addEventListener('load', (event) => {
     .then((res) => res.json())
     .then((response) => {
         console.log(response)
+
+        /**
+         * CREATING THE TITLE CATEGORIES
+         */
         let section = document.createElement('section');
         let p = document.createElement('p')
         p.setAttribute('class', 'title')
         p.textContent = 'Rank Symbol Name Price Market-Cap 24hr'
 
+        /**
+         * NAME OF LIST
+         */
         let hot = document.createElement('h1')
         hot.setAttribute('class', 'hot')
         hot.textContent = 'Hot 100'
         hot.style.fontFamily = 'Impact'
         main.append(hot)
 
+        /**
+         * DATE
+         */
         let hotP = document.createElement('p')
         hotP.textContent = "Januaray 17, 2023"
         hotP.setAttribute('class', 'date')
         hot.append(hotP)
         
-
+        //ADDING TO DOM:
         main.append(section)
         section.append(p)
 
 
-       
+        /**
+         * GRABBING THE COIN DATA
+         */
         let coins = response.data
         for(let i = 0; i < coins.length; i++){
             function getCoin(){
-                let rank = response.data[i].rank;
+            let rank = response.data[i].rank;
             console.log(rank)
     
             let name = response.data[i].name;
@@ -259,12 +288,12 @@ window.addEventListener('load', (event) => {
 
         }//for loop closing tag
 
-       
-      
 
     })
     .catch((error) => {
         console.log(error)
     })
 })
+
+
 

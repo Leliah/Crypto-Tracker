@@ -22,6 +22,14 @@ body {
     border: 3px solid black;
     padding: 0px;
     margin-bottom: 1px;
+    transition: transform 0.25s ease;
+    cursor: zoom-in;
+  }
+
+  .card:hover {
+    background-color: #f0f8ff;
+    transform: scale(1.3);
+    cursor: zoom-out;
   }
 
   .container {
@@ -33,6 +41,35 @@ body {
     text-align:justify;
   }
 
+  @media only screen 
+  and (min-width: 768px) 
+  and (max-width: 1279px){
+    div.container {
+      width: auto;
+      height: auto;
+    }
+    p.title {
+      word-spacing: 3.3rem;
+      font-size: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+  div.container{
+    width: auto;
+    height: auto;
+  }
+  p.title {
+    word-spacing: 1.2rem;
+    font-size: 12px;
+  }
+  h1 {
+    font-size: 20px;
+  }
+  #search{
+    width: 10rem;
+  }
+}
 
 
 /* 
@@ -70,6 +107,8 @@ h1 {
     font-family: 'Monoton', cursive;
     margin-bottom: 10px;
 }
+
+
 
 form {
     text-align: center;
