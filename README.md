@@ -39,5 +39,5 @@ Skip the scroll! Find your coin ASAP simply by typing the name and hitting searc
 
 ![this is an image](/assets/search.png)
 
-#### API Used:
+#### API Used 🔗:
 [Coincap API](https://docs.coincap.io)
