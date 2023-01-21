@@ -50,5 +50,5 @@ Depending on if the value of your coin has changed positively, negatively, or no
 #### API Used 🔗:
 [Coincap API](https://docs.coincap.io)
 
-#### Widgets Used:
+#### Widgets Used 🧩:
 [Tradingview Widget](https://www.tradingview.com/widget/advanced-chart/)
