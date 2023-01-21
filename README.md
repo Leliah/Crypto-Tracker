@@ -1,6 +1,8 @@
 # [America's Next Top Crypto](https://regal-squirrel-84ca87.netlify.app)
 America's Next Top Crypto makes it easy to track the top 100 cryptocurriences in the market.
 
+[Visit Site](https://regal-squirrel-84ca87.netlify.app)
+
 What You'll Find:
 * Coin's ranking
 * Name
