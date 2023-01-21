@@ -10,6 +10,7 @@ What You'll Find:
 * Price in USD
 * Market Cap in USD
 * Value change in the last 24hrs
+* Live Charts
 
 ![this is an image](/assets/home2.0.png)
 
