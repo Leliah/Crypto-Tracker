@@ -31,7 +31,7 @@ IMPORTANT: Double-click to close chart view and load next chart.
 ### Market Checker
 Determine the size and popularity of your coin by looking under the Market Cap Category of our list - this checks to see if the current market cap is in the millions, or billions!
 
-![this is an image](/assets/marketcap2.0.png)
+![this is an image](/assets/marketCap2.0.png)
 
 ### Value Checker
 Depending on if the value of your coin has changed positively, negatively, or not at all in the last 24 hours, will determine the color of the percent you will see in the chart.
@@ -43,7 +43,7 @@ Depending on if the value of your coin has changed positively, negatively, or no
 * No change at all:
     * black
 
-![this is an image](/assets/marketchange2.0.png)
+![this is an image](/assets/marketChange2.0.png)
 
 
 
